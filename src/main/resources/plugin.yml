@@ -1,0 +1,9 @@
+name: Jihad
+author: Tristan
+version: ${project.version}
+main: co.tdude.jihad.Main
+
+commands:
+   jihad:
+      description: Spawns you some tnt and a lighter.
+      usage: /<command>
