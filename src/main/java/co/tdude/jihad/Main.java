@@ -20,25 +20,12 @@ import java.util.UUID;
  */
 public class Main extends JavaPlugin {
 
-    ArrayList<ItemStack> kit;
-    ItemStack tnt;
-    ItemMeta lightermeta;
-    ItemStack lighter;
     Map<UUID, Long> users;
 
     @Override
     public void onEnable() {
         getLogger().info("Jihad by Tristan enabled!");
-        kit = new ArrayList<ItemStack>();
         users = new HashMap<UUID, Long>();
-        tnt = new ItemStack(Material.TNT, 64);
-        lighter = new ItemStack(Material.FLINT_AND_STEEL, 1);
-        lightermeta = lighter.getItemMeta();
-        lightermeta.setDisplayName("Tristan's ALLAHU AKBAR"); //:-)
-        lightermeta.addEnchant(Enchantment.DURABILITY, 3, false);
-        lighter.setItemMeta(lightermeta);
-        kit.add(lighter);
-        kit.add(tnt);
     }
 
     @Override
@@ -46,16 +33,24 @@ public class Main extends JavaPlugin {
         if (label.equalsIgnoreCase("jihad")) {
             if (sender instanceof Player) {
                 if ((users.get(((Player) sender).getUniqueId()) == null)) {
-                    for (ItemStack itemStack : kit) {
-                        ((Player) sender).getInventory().addItem(itemStack);
-                    }
+                    ItemStack tnt = new ItemStack(Material.TNT, 64);
+                    ItemStack lighter = new ItemStack(Material.FLINT_AND_STEEL, 1);
+                    ItemMeta lightermeta = lighter.getItemMeta();
+                    lightermeta.setDisplayName("Tristan's ALLAHU AKBAR"); //:-)
+                    lightermeta.addEnchant(Enchantment.DURABILITY, 3, false);
+                    lighter.setItemMeta(lightermeta);
+                    ((Player) sender).getInventory().addItem(tnt, lighter);
                     users.put(((Player) sender).getUniqueId(), System.currentTimeMillis());
                     return true;
                 } else {
                     if (users.get(((Player) sender).getUniqueId()) + (60 * 1000) <= System.currentTimeMillis()) {
-                        for (ItemStack itemStack : kit) {
-                            ((Player) sender).getInventory().addItem(itemStack);
-                        }
+                        ItemStack tnt = new ItemStack(Material.TNT, 64);
+                        ItemStack lighter = new ItemStack(Material.FLINT_AND_STEEL, 1);
+                        ItemMeta lightermeta = lighter.getItemMeta();
+                        lightermeta.setDisplayName("Tristan's ALLAHU AKBAR"); //:-)
+                        lightermeta.addEnchant(Enchantment.DURABILITY, 3, false);
+                        lighter.setItemMeta(lightermeta);
+                        ((Player) sender).getInventory().addItem(tnt, lighter);
                         users.put(((Player) sender).getUniqueId(), System.currentTimeMillis());
                         return true;
                     }
